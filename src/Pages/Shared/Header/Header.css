@@ -6,3 +6,10 @@ div {
     font-family: 'Akshar', sans-serif;
     color: #222d35;
 }
+
+.logout-btn {
+    border: none;
+    background-color: inherit;
+    font-weight: 600;
+    color:'#222d35';
+}
