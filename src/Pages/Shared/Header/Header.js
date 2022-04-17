@@ -16,7 +16,6 @@ const Header = () => {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav>
                             <CustomLink to="/" className='nav-link m-1'>Home</CustomLink>
-                            <Nav.Link href="home#services" className="m-1">Services</Nav.Link>
                             <CustomLink to="/blogs" className='nav-link m-1'>Blogs</CustomLink>
                             <CustomLink to="/about" className='nav-link m-1'>About</CustomLink>
                         </Nav>
