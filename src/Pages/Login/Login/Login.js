@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
+import SocialLogin from '../SocialLogin/SocicalLoin';
 
 const Login = () => {
     const emailRef = useRef('');
@@ -76,6 +77,7 @@ const Login = () => {
                         </button>
                         <p className='mt-2'>New to Career Guide? <Link to="/register" className='text-primary pe-auto text-decoration-none'>Please Register</Link></p>
                         <p>Forget Password? <button onClick={resetPassword} className='btn btn-link text-primary pe-auto text-decoration-none'>Reset Password</button></p>
+                        <SocialLogin></SocialLogin>
                         <ToastContainer/>
                     </Form>
                 </div>
