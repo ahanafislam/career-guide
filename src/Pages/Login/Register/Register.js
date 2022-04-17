@@ -43,7 +43,7 @@ const Register = () => {
                     <Form onSubmit={handleRegister}>
                         <Form.Group className="mb-3" controlId="formBasicFullName">
                             <Form.Label>Full Name</Form.Label>
-                            <Form.Control ref={fullNameRef} type="text" placeholder="Enter Full Name" required/>
+                            <Form.Control ref={fullNameRef} type="text" placeholder="Enter Full Name"/>
                         </Form.Group>
                         
                         <Form.Group className="mb-3" controlId="formBasicEmail">
