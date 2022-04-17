@@ -2,18 +2,21 @@
     {
         "id": 1,
         "name": "Resume Services",
+        "img": "https://assets.ltkcontent.com/images/11495/3885.resume3_0066f46bde.jpg",
         "description": "Be confident that your resume is flawless, your best shines through, and hiring managers will take notice.",
         "price": 80
     },
     {
         "id": 2,
         "name": "Career Development Sessions",
+        "img": "https://assets.ltkcontent.com/images/11495/3885.resume3_0066f46bde.jpg",
         "description": "I Will take a 60 minute online or face to face session and answer all your question related to career development.",
         "price": 100
     },
     {
         "id": 3,
         "name": "Job Search Strategies",
+        "img": "https://assets.ltkcontent.com/images/11495/3885.resume3_0066f46bde.jpg",
         "description": "Guide you with customized and specific job searching strategy. I will help you find 60% more relevant jobs for you.",
         "price": 120
     }
