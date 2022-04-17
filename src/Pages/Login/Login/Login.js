@@ -1,8 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { Container, Form } from 'react-bootstrap';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import auth from '../../../firebase.init';
+import Loading from '../../Shared/Loading/Loading';
 
 const Login = () => {
     const emailRef = useRef('');
@@ -17,13 +20,14 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
+    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
     
     useEffect(() => {
         user && navigate('/');
     },[user, navigate]);
 
-    if(loading) {
-        console.log("loading...");
+    if(loading || sending) {
+        return <Loading></Loading>
     }
 
     if(error) {
@@ -36,6 +40,19 @@ const Login = () => {
         const password = passwordRef.current.value;
 
         signInWithEmailAndPassword(email,password);
+    }
+
+    const resetPassword = async () => {
+        const email = emailRef.current.value;
+        await sendPasswordResetEmail(email);
+        
+        if(email) {
+            toast("Please Cheack Your Email.");
+        }
+
+        else {
+            toast("Please Provide email id");
+        }
     }
 
     return (
@@ -57,8 +74,9 @@ const Login = () => {
                         <button className='brand-btn' type="submit">
                             Log in
                         </button>
-                        <p className='mt-2'>New to Career Guide? <Link to="/register" className='text-primary pe-auto text-decoration-none'>Please Register</Link> </p>
-                        <p>Forget Password? <button className='btn btn-link text-primary pe-auto text-decoration-none'>Reset Password</button> </p>
+                        <p className='mt-2'>New to Career Guide? <Link to="/register" className='text-primary pe-auto text-decoration-none'>Please Register</Link></p>
+                        <p>Forget Password? <button onClick={resetPassword} className='btn btn-link text-primary pe-auto text-decoration-none'>Reset Password</button></p>
+                        <ToastContainer/>
                     </Form>
                 </div>
             </div>

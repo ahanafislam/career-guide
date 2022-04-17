@@ -3,6 +3,7 @@ import { Container, Form } from 'react-bootstrap';
 import { Link, useNavigate} from 'react-router-dom';
 import auth from '../../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile} from 'react-firebase-hooks/auth';
+import Loading from '../../Shared/Loading/Loading';
 
 const Register = () => {
     const fullNameRef = useRef('');
@@ -30,7 +31,7 @@ const Register = () => {
     }
 
     if(loading || updating) {
-        console.log("Loading..")
+        return <Loading></Loading>
     }
 
     return (
