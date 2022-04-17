@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const Header = () => {
     return (
         <>
-            <Navbar expand="lg">
+            <Navbar collapseOnSelect expand="lg" bg="white" sticky='top'>
                 <Container>
                     <Link to="/" className='nav-link'>
                         <h3 className='logo' as={Link} to="/">Career Guide</h3>
