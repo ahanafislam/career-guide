@@ -10,4 +10,11 @@
     font-weight: 600;
     padding: 7px 14px;
     background-color: #c3002f;
+    transition: background-color 1s linear;
+    border-radius: 5px;
+}
+
+.brand-btn:hover {
+    color: #c3002f;
+    background-color: #c3002e1e;
 }
