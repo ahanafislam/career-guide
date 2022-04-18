@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Container, Form } from 'react-bootstrap';
 import { Link, useNavigate} from 'react-router-dom';
 import auth from '../../../firebase.init';
@@ -11,7 +11,9 @@ const Register = () => {
     const emailRef = useRef('');
     const passwordRef = useRef('');
     const navigate = useNavigate();
-    const [agree, setAgree] = useState(false);
+    
+    let errorElement;
+
     const [
         createUserWithEmailAndPassword,
         user,
@@ -28,11 +30,18 @@ const Register = () => {
         
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: fullName });
-        navigate('/');
     }
+
+    useEffect(() => {
+        user && navigate("/");
+    },[user, navigate]);
 
     if(loading || updating) {
         return <Loading></Loading>
+    }
+
+    if(error || updateError) {
+        errorElement = <p className='text-danger'>{error?.message} {updateError?.message}</p>
     }
 
     return (
@@ -40,6 +49,7 @@ const Register = () => {
             <div>
                 <h2 className='brand-text text-center'>Sign Up</h2>
                 <div className="shadow p-5 me-auto ms-auto" style={{"width":"30rem"}}>
+                    {errorElement}
                     <Form onSubmit={handleRegister}>
                         <Form.Group className="mb-3" controlId="formBasicFullName">
                             <Form.Label>Full Name</Form.Label>
@@ -55,10 +65,7 @@ const Register = () => {
                             <Form.Label>Password</Form.Label>
                             <Form.Control ref={passwordRef} type="password" placeholder="Password" required/>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                            <Form.Check onClick={() => setAgree(!agree)} type="checkbox" label="Accept Terms and Conditions" />
-                        </Form.Group>
-                        <button disabled={!agree} className='brand-btn' type="submit">
+                        <button className='brand-btn' type="submit">
                             Sign Up
                         </button>
                     </Form>
